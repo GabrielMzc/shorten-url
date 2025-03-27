@@ -31,4 +31,9 @@ export class UserService {
     const user = await this.repository.findOneBy({ email: email });
     return user;
   }
+
+  async findById(userId: number): Promise<UserEntity | null> {
+    return this.repository.findOneBy({ user_id: userId });
+  }
+  
 }
