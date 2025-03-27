@@ -27,7 +27,7 @@ export class UserService {
     return { ...save, password_hash: undefined};
   }
 
-  async findByUserName(email: string): Promise<UserEntity | null> {
+  async findByEmail(email: string): Promise<UserEntity | null> {
     const user = await this.repository.findOneBy({ email: email });
     return user;
   }
