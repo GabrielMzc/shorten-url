@@ -18,13 +18,13 @@ export class UrlService {
     private readonly accessLogRepository: Repository<AccessLogEntity>,
   ) {}
   
-  async shortenUrl(data: ShortenUrlDto, userId: number): Promise<string> {
+  async shortenUrl(data: ShortenUrlDto, userId: number, baseUrl: string): Promise<string> {
     const shortenedUrl = nanoid(6);
     const user = userId ? await this.userService.findById(userId) : null;
 
     const url = this.repository.create({
       original_url: data.originalUrl,
-      short_url: shortenedUrl,
+      short_url: `${baseUrl}/${shortenedUrl}`,
       user: user || undefined,
     });
 
@@ -32,7 +32,7 @@ export class UrlService {
     return shortenedUrl;
   }
 
-  async getUserUrls(userId: number): Promise<UrlEntity[]> {
+  async getUrls(userId: number): Promise<UrlEntity[]> {
     return this.repository.find({
       where: {
         user: { user_id: userId },
@@ -45,30 +45,33 @@ export class UrlService {
         created_at: true,
         updated_at: true,
       },
+      order: {
+        created_at: 'DESC',
+      },
     });
   }
 
-  async getUrlByShortCode(shortUrl: string): Promise<UrlEntity | null> {
+  async getUrlByShortCode(shortUrl: string, baseUrl: string): Promise<UrlEntity | null> {
     return this.repository.findOne({
       where: {
-        short_url: shortUrl,
+        short_url: `${baseUrl}/${shortUrl}`,
         deleted_at: IsNull(),
       },
     });
   }
 
-  async updateUrl(data: UpdateUrlDto): Promise<any> {
+  async updateUrl(data: UpdateUrlDto, baseUrl: string): Promise<any> {
     return this.repository.update({
-        short_url: data.shortUrl, deleted_at: IsNull(),
+        short_url: `${baseUrl}/${data.shortUrl}`, deleted_at: IsNull(),
     },{
       original_url: data.originalUrl,
       updated_at: new Date(),
     });
   }
 
-  async deleteUrl(shortUrl: string): Promise<any> {
+  async deleteUrl(shortUrl: string, baseUrl: string): Promise<any> {
     return this.repository.update({
-        short_url: shortUrl, deleted_at: IsNull(),
+        short_url: `${baseUrl}/${shortUrl}`, deleted_at: IsNull(),
     },{
         deleted_at: new Date(),
     });
@@ -88,8 +91,8 @@ export class UrlService {
     });
   }
 
-  async redirectUrl(shortUrl: string, userAgent: string, ipAddress: string): Promise<string> {
-    const url = await this.getUrlByShortCode(shortUrl);
+  async redirectUrl(shortUrl: string, userAgent: string, ipAddress: string, baseUrl: string): Promise<string> {
+    const url = await this.getUrlByShortCode(shortUrl, baseUrl);
     if (!url) {
       throw new Error('URL not found');
     }
