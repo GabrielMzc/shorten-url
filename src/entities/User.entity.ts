@@ -17,7 +17,7 @@ export class UserEntity {
   email: string;
 
   @Column()
-  password_hash: string;
+  password_hash?: string;
 
   @CreateDateColumn()
   created_at: Date;
