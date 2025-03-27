@@ -14,7 +14,9 @@ import { UrlService } from './url.service';
 import { ShortenUrlDto, UpdateUrlDto } from 'src/models/Url.model';
 import { CurrentUser } from 'src/decorators/auth/currentUser.decorator';
 import { BaseUrl } from 'src/decorators/baseUrl.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth('JWT-auth')
 @Controller('url')
 export class UrlController {
   constructor(private readonly urlService: UrlService) {}

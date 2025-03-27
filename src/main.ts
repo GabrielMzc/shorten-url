@@ -2,11 +2,15 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { RequestTimeLogsInterceptor } from './interceptors/requestTimeLogs.interceptor';
+import { SwaggerApiModule } from './documentation/swagger.module';
+import { HttpExceptionFilter } from './common/httpException.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api');
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -18,6 +22,8 @@ async function bootstrap() {
       }
     }),
   );
+
+  SwaggerApiModule.setupSwagger(app);
 
   app.useGlobalInterceptors(new RequestTimeLogsInterceptor());
 
