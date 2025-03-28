@@ -16,6 +16,16 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@apis/*": ["src/http/*"],
+      "@common/*": ["src/common/*"],
+      "@decorators/*": ["src/decorators/*"],
+      "@entity/*": ["src/entities/*"],
+      "@guards/*": ["src/guards/*"],
+      "@interceptors/*": ["src/interceptors/*"],
+      "@models/*": ["src/models/*"],
+      "@documentation/*": ["src/documentation/*"],
+    }
   }
 }

@@ -1,0 +1,38 @@
+{
+    "moduleFileExtensions": [
+        "js",
+        "json",
+        "ts"
+    ],
+    "rootDir": ".",
+    "testEnvironment": "node",
+    "testRegex": ".unit.spec.ts$",
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "moduleNameMapper": {
+        "^src/(.*)$": "<rootDir>/src/$1",
+        "^@apis/(.*)$": "<rootDir>/src/http/$1",
+        "^@common/(.*)$": "<rootDir>/src/common/$1",
+        "^@decorators/(.*)$": "<rootDir>/src/decorators/$1",
+        "^@entity/(.*)$": "<rootDir>/src/entities/$1",
+        "^@guards/(.*)$": "<rootDir>/src/guards/$1",
+        "^@interceptors/(.*)$": "<rootDir>/src/interceptors/$1",
+        "^@models/(.*)$": "<rootDir>/src/models/$1",
+        "^@documentation/(.*)$": "<rootDir>/src/documentation/$1"
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+        "lcov",
+        "text"
+    ],
+    "coverageThreshold": {
+        "global": {
+            "lines": 80,
+            "functions": 80,
+            "branches": 80,
+            "statements": 80
+        }
+    }
+}

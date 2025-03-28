@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import {compare} from 'bcryptjs';
 
 import { UserService } from '../http/user/user.service';
-import { UserEntity } from 'src/entities/User.entity';
+import { UserEntity } from '@entity/User.entity';
 
 @Injectable()
 export class AuthService {
