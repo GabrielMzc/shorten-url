@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions = {
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  database: 'shoten-url',
+  database: process.env.DB_DATABASE,
   entities: entities,
   synchronize: true,
 };
