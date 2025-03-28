@@ -6,9 +6,16 @@ import { JwtAuthGuard } from './guards/jwtAuth.guard';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { UrlModule } from './http/url/url.module';
 import { HttpExceptionFilter } from './common/httpException.filter';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DatabaseModule, AuthModule, UserModule, UrlModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
+    AuthModule,
+    UserModule,
+    UrlModule,
+  ],
   controllers: [],
   providers: [
     {
