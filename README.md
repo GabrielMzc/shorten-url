@@ -83,7 +83,6 @@ Detalhes das variáveis:
 - **Região**: Estados Unidos
 
 ### Links de Acesso
-- **Aplicação Base**: [https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com](https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com)
 - **Documentação de Autenticação**: [https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/auth](https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/auth)
 - **Documentação de URLs**: [https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/url](https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/url)
 
