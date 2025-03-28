@@ -15,7 +15,6 @@ npm install -g pnpm
 - **Docker**: Versão `>=20.10.0`
 
 ## Configuração
-
 ### Configuração do Docker
 O projeto utiliza **Docker** para gerenciar o banco de dados PostgreSQL.
 
@@ -44,7 +43,6 @@ services:
 
 ### Variáveis de Ambiente
 Crie um arquivo `.env` baseado no arquivo `.env.example`:
-
 ```env
 PORT=
 NODE_ENV=
@@ -59,13 +57,11 @@ Detalhes das variáveis:
 - `EXPIRES_IN`: O tempo de expiração do token JWT (exemplo: 1h)
 
 ## Documentação da API
-
 ### Swagger Documentation
 - **URL de Documentação de Autenticação**: `${basepath}/api/docs/auth`
 - **URL de Documentação de URLs**: `${basepath}/api/docs/url`
 
 ### Passos para Autenticação:
-
 1. **Criar Usuário**
    - Acesse a rota `/api/user` no Swagger de Autenticação
    - Crie um novo usuário fornecendo os dados necessários (email, senha, etc.)
@@ -80,6 +76,17 @@ Detalhes das variáveis:
      - Geralmente, isso é feito no botão "Authorize"
      - Formato: `Bearer SEU_TOKEN_JWT`
 
+## Deploy
+### Plataforma de Hospedagem
+- **Heroku**: Plataforma de nuvem utilizada para hospedagem da aplicação
+- **Método de Deploy**: Heroku CLI
+- **Região**: Estados Unidos
+
+### Links de Acesso
+- **Aplicação Base**: [https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com](https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com)
+- **Documentação de Autenticação**: [https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/auth](https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/auth)
+- **Documentação de URLs**: [https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/url](https://nestjs-shortenurl-59b92c57a4a8.herokuapp.com/api/docs/url)
+
 ## Dependências
 O projeto utiliza as seguintes dependências principais:
 - NestJS: Framework para construção do serviço
@@ -93,7 +100,6 @@ pnpm install
 ```
 
 ## Execução
-
 ### Iniciar Banco de Dados
 ```bash
 docker-compose up -d
@@ -110,9 +116,7 @@ Para rodar os testes unitários:
 pnpm test:unit
 ```
 
-
 ## Contato
 Em caso de dúvidas ou sugestões, entre em contato:
-
 **Gabriel Muzeti**
 - Email: gabriel.muzeti123@gmail.com
