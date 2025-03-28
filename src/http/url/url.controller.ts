@@ -75,7 +75,7 @@ export class UrlController {
       const userAgent = req.headers['user-agent'] || 'Unknown';
       const ipAddress = req.ip || req.connection.remoteAddress || '0.0.0.0';
 
-      await this.urlService.redirectUrl(
+      const originalUrl = await this.urlService.redirectUrl(
         shortUrl,
         userAgent,
         ipAddress,
@@ -83,6 +83,7 @@ export class UrlController {
       );
       return {
         statusCode: HttpStatus.TEMPORARY_REDIRECT,
+        originalUrl: originalUrl,
         message: 'Redirecting...',
       };
     } catch (error) {

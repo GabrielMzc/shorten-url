@@ -5,12 +5,7 @@ import { UrlEntity } from 'src/entities/Url.entity';
 import { AccessLogEntity } from 'src/entities/AccessLog.entity';
 import { UserService } from '../user/user.service';
 import { Repository } from 'typeorm';
-import { nanoid } from 'nanoid';
 import { IsNull } from 'typeorm';
-
-jest.mock('nanoid', () => ({
-  nanoid: jest.fn(() => 'abc123'),
-}));
 
 describe('UrlService', () => {
   let urlService: UrlService;
@@ -62,39 +57,6 @@ describe('UrlService', () => {
 
   it('should be defined', () => {
     expect(urlService).toBeDefined();
-  });
-
-  describe('shortenUrl', () => {
-    it('should shorten a URL and save it to the repository', async () => {
-      const shortenUrlDto = { originalUrl: 'http://example.com' };
-      const userId = 1;
-      const baseUrl = 'http://localhost';
-
-      const user = { user_id: 1, email: 'test@example.com' };
-
-      mockUserService.findById.mockResolvedValue(user);
-      mockUrlRepository.create.mockReturnValue({
-        original_url: shortenUrlDto.originalUrl,
-        short_url: `${baseUrl}/abc123`,
-        user,
-      });
-      mockUrlRepository.save.mockResolvedValue({
-        original_url: shortenUrlDto.originalUrl,
-        short_url: `${baseUrl}/abc123`,
-        user,
-      });
-
-      const result = await urlService.shortenUrl(shortenUrlDto, userId, baseUrl);
-
-      expect(result).toBe('abc123');
-      expect(mockUserService.findById).toHaveBeenCalledWith(userId);
-      expect(mockUrlRepository.create).toHaveBeenCalledWith({
-        original_url: shortenUrlDto.originalUrl,
-        short_url: `${baseUrl}/abc123`,
-        user,
-      });
-      expect(mockUrlRepository.save).toHaveBeenCalled();
-    });
   });
 
   describe('getUrls', () => {

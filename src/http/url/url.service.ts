@@ -3,7 +3,6 @@ import { IsNull, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UrlEntity } from 'src/entities/Url.entity';
 import { ShortenUrlDto, UpdateUrlDto } from 'src/models/Url.model';
-import { nanoid } from 'nanoid';
 import { UserService } from '../user/user.service';
 import { AccessLogEntity } from 'src/entities/AccessLog.entity';
 
@@ -19,7 +18,7 @@ export class UrlService {
   ) {}
   
   async shortenUrl(data: ShortenUrlDto, userId: number, baseUrl: string): Promise<string> {
-    const shortenedUrl = nanoid(6);
+    const shortenedUrl = Math.random().toString(36).substring(2, 8);
     const user = userId ? await this.userService.findById(userId) : null;
 
     const url = this.repository.create({
